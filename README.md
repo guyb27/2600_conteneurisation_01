@@ -1,9 +1,9 @@
 # Projet de contenerisation avec l ecole 2600
-
 Projet de conteneurisation avec un site web avec une faille SQLI, une db et une machine attaquante
-Exercice Noté 01 - Environnement d'Attaque SQLi
+## Exercice Noté 01 - Environnement d'Attaque SQLi
 Ce projet configure un environnement Docker Compose simulant une vulnérabilité d'injection SQL (SQLi) et son exploitation automatisée.
 Structure du projet
+```bash
 .
 ├── docker-compose.yml
 ├── web/
@@ -22,7 +22,9 @@ Structure du projet
 │   │   └── attack.sh
 │   └── results/  (créé automatiquement pendant l'exécution)
 └── README.md
-Contenu de l'environnement
+```
+
+### Contenu de l'environnement
 
 Service Web Vulnérable :
 
@@ -45,7 +47,7 @@ Script d'attaque automatisé
 
 
 
-Fonctionnement
+### Fonctionnement
 Au démarrage de l'environnement, la séquence suivante se produit :
 
 La base de données démarre et est initialisée avec des tables et données
@@ -60,8 +62,8 @@ Il génère un rapport de synthèse
 
 
 
-Instructions d'utilisation
-Prérequis
+### Instructions d'utilisation
+### Prérequis
 
 Docker et Docker Compose installés sur votre machine
 
