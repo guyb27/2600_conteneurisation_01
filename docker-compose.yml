@@ -1,0 +1,51 @@
+
+services:
+  # Service de base de données PostgreSQL
+  db:
+    image: postgres
+    container_name: sqli_db
+    networks:
+      - sqli_network
+    environment:
+      POSTGRES_PASSWORD: password123
+      POSTGRES_USER: dbuser
+      POSTGRES_DB: exploitable_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db_init:/docker-entrypoint-initdb.d
+    restart: always
+
+  # Service web vulnérable (Nginx + PHP-FPM avec vulnérabilité SQLi)
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: sqli_web
+    networks:
+      - sqli_network
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    volumes:
+      - ./web/src:/var/www/html
+    restart: always
+
+  # Machine attaquante avec SQLMap
+  attacker:
+    build:
+      context: ./attacker
+      dockerfile: Dockerfile
+    container_name: sqli_attacker
+    networks:
+      - sqli_network
+    depends_on:
+      - web
+    volumes:
+      - ./attacker/results:/results
+    restart: "no"  # La machine attaquante s'arrêtera une fois l'attaque terminée
+
+networks:
+  sqli_network:
+    driver: bridge
