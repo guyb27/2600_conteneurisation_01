@@ -50,7 +50,7 @@ try {
     <h1>Résultats de recherche</h1>
     
     <div class="search-form">
-        <form method="GET" action="search.php">
+        <form method="GET" action="index.php">
             <label for="username">Rechercher par nom d'utilisateur:</label>
             <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" placeholder="Entrez un nom d'utilisateur">
             <button type="submit">Rechercher</button>
