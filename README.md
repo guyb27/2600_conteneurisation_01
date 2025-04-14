@@ -67,14 +67,15 @@ Il génère un rapport de synthèse
 
 Docker et Docker Compose installés sur votre machine
 
-Installation et démarrage
+### Installation et démarrage
 
 Clonez ou téléchargez ce dépôt
 Ouvrez un terminal et naviguez jusqu'au répertoire du projet
 Exécutez la commande suivante :
 
-bashdocker-compose up --build
-
+```bash
+docker-compose up --build
+```
 Attendez que tous les services soient opérationnels et que l'attaque se termine
 
 Accès à l'application vulnérable
@@ -82,14 +83,14 @@ Accès à l'application vulnérable
 Ouvrez votre navigateur et accédez à http://localhost:8080
 Vous pouvez tester manuellement la vulnérabilité en entrant des payloads SQLi dans le champ de recherche, comme ' OR 1=1 --
 
-Visualisation des résultats
+### Visualisation des résultats
 Les résultats de l'attaque automatisée sont disponibles dans le dossier attacker/results/.
 Vulnérabilité SQLi implémentée
 L'application est intentionnellement vulnérable aux injections SQL dans la page de recherche. La requête suivante dans search.php est vulnérable :
 php$query = "SELECT id, username, email, role FROM users WHERE username LIKE '%" . $username . "%'";
 Cette implémentation permet l'injection de code SQL malveillant par le biais du paramètre username.
-Choix techniques
 
+###Choix techniques
 Pourquoi PHP avec Nginx pour l'application vulnérable :
 
 Facilité d'implémentation d'une vulnérabilité SQLi
@@ -117,5 +118,5 @@ Permet l'automatisation complète de l'attaque
 
 
 
-Remarques
+### Remarques
 Ce projet est destiné uniquement à des fins éducatives. L'exploitation de vulnérabilités sans autorisation explicite est illégale.
