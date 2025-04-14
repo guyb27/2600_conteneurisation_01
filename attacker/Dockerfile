@@ -1,15 +1,16 @@
-# Use the official Python image as a base
-FROM python:3
+FROM debian:11-slim
 
-# Set working directory
-WORKDIR /sqlmap
+# Installation des dépendances
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install Git to allow cloning the SQLMap repository
-RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+# Clonage de SQLMap
+WORKDIR /opt
+RUN git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git
 
-# Clone the SQLMap repository with a shallow copy to reduce image size
-RUN git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git .
-
-# Set the default entrypoint to SQLMap
-ENTRYPOINT ["python3.12", "sqlmap.py"]
-
+# Use the sqlmap command
+CMD ["bash", "-c", "until curl -s http://web:80 > /dev/null; do sleep 5; done && python3 /opt/sqlmap/sqlmap.py -u 'http://web/index.php?username=test' --batch --dbms=PostgreSQL --dump-all -D vulnerable_db"]

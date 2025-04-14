@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_PASSWORD: password123
       POSTGRES_USER: dbuser
-      POSTGRES_DB: exploitable_db
+      POSTGRES_DB: vulnerable_db
     ports:
       - "5432:5432"
     volumes:
