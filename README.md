@@ -90,7 +90,7 @@ L'application est intentionnellement vulnérable aux injections SQL dans la page
 php$query = "SELECT id, username, email, role FROM users WHERE username LIKE '%" . $username . "%'";
 Cette implémentation permet l'injection de code SQL malveillant par le biais du paramètre username.
 
-###Choix techniques
+### Choix techniques
 Pourquoi PHP avec Nginx pour l'application vulnérable :
 
 Facilité d'implémentation d'une vulnérabilité SQLi
