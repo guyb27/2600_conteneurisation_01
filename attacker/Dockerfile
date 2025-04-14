@@ -11,5 +11,5 @@ RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 RUN git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git .
 
 # Set the default entrypoint to SQLMap
-ENTRYPOINT ["python3", "sqlmap.py"]
+ENTRYPOINT ["python3.12", "sqlmap.py"]
 
