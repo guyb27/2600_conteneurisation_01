@@ -38,10 +38,11 @@ services:
       context: ./attacker
       dockerfile: Dockerfile
     container_name: sqli_attacker
-    networks:
-      - sqli_network
+    #networks:
+    #  - sqli_network
     depends_on:
       - web
+    network_mode: "host"
     volumes:
       - ./attacker/results:/results
     restart: "no"  # La machine attaquante s'arrêtera une fois l'attaque terminée
