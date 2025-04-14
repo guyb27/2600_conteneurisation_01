@@ -20,6 +20,9 @@ EXPOSE 80
 
 # Script de démarrage pour exécuter PHP-FPM et Nginx
 COPY ./start.sh /start.sh
+
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 775 /var/www/html
 RUN chmod +x /start.sh
 
 CMD ["/start.sh"]
